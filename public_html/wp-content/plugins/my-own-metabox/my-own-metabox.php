@@ -81,6 +81,34 @@ if(!function_exists('remove_dashboard_metabox')):
 endif;
 add_action('wp_dashboard_setup', 'remove_dashboard_metabox');
 
+// Get top ancestor
+if(!function_exists('get_top_ancestor_id')) :
+    //Función retornara el valor del id del top mas ancestro de la page relativa a la pagina actual mostrada
+    function get_top_ancestor_id() {
+        global $post; // Hay que declarar la variable global dentro del ámbito
+        if($post->post_parent) : // Si tiene parent page. obtiene el post id de su ancestro
+
+            //get_post_ancestors($post->ID); // Esta función Retorna un array y necesitamos un single value
+            $ancestor = array_reverse(get_post_ancestors($post->ID)); // La metemos en una variable para recorrer el array
+            return $ancestor[0];
+            
+        else : 
+            return $post->ID; //Si no tiene parent page. Es padre por sí misma, retorna su mismo id
+        endif;
+
+    }
+endif;
+
+// Si esta página tiene hijos?
+if(!function_exists('has_children')):
+    function has_children() {
+        global $post;
+
+        $pages = get_pages('child_of=' . $post->ID); // get_pages() retorna un array
+
+        return count($pages); // si es 0 no hay hijos. Devuelve el valor x 
+    }
+endif;
 
 
 ?>

@@ -143,3 +143,26 @@
     
 }
 }
+
+// Top Ancestor
+.site-nav nav ul li.current-menu-item a:link,
+.site-nav nav ul li.current-menu-item a:visited,
+.site-nav nav ul li.current-page-ancestor a:link,
+.site-nav nav ul li.current-page-ancestor a:visited {
+    font-weight: bold;
+    background-color: #006ec3;
+    color: #fff;
+
+}
+
+.children-links .parent-link a:link,
+.children-links .parent-link a:visited {
+  color: green;
+}
+
+.children-links .current_page_item a:link,
+.children-links .current_page_item a:visited {
+  border: 1px solid #ddd;
+  color: green;
+  cursor: pointer;
+}
